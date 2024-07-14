@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screening_task/features/user_details/widgets/user_details_page.dart';
 import 'package:flutter_screening_task/features/users_list/models/users_model.dart';
 
 import '../user_bloc/user_bloc.dart';
@@ -43,6 +44,11 @@ class _UsersListPageState extends State<UsersListPage> {
           final List<Widget> items =
               List.generate(state.users!.length, (index) {
             return ListTile(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context){
+                  return UserDetailsPage(user: state.users![index]);
+                }));
+              },
               leading: CircleAvatar(
                 radius: 32.0,
                 backgroundImage: NetworkImage(state.users![index].avatar),
